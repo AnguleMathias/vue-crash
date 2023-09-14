@@ -1,21 +1,21 @@
 <template>
   <header-component />
-  <body-component />
+  <div>
+    <router-view />
+  </div>
   <footer-component />
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue';
-import BodyComponent from './components/BodyComponent.vue';
-import FooterComponent from './components/FooterComponent.vue';
+import HeaderComponent from "./components/HeaderComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    'body-component': BodyComponent,
-    'footer-component': FooterComponent,
-    'header-component': HeaderComponent
-  }
+    "footer-component": FooterComponent,
+    "header-component": HeaderComponent,
+  },
 };
 </script>
 
