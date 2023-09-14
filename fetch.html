@@ -16,12 +16,30 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div id="app"></div>
+          <div id="app">
+            <ul>
+              <book-item v-for="item in books.results" :book="item" :key="item.id" :id="item.id"></book-item>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js"></script>
     <script>
+      const BookItem = {
+        props: ["book"],
+        template: `
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">
+                {{ book.title }}
+              </div>
+              {{ book.authors[0].name }}
+            </div>
+          </li>
+        `,
+      };
+
       let data = {
         books: {
           results: [],
@@ -48,6 +66,9 @@
                 );
               }
             });
+        },
+        components: {
+          'book-item': BookItem,
         },
       }).mount("#app");
     </script>
