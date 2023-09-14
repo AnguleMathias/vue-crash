@@ -30,6 +30,7 @@
                 :book="item"
                 :key="item.id"
                 :id="item.id"
+                @remove-book="removeBook"
               ></book-item>
             </ul>
           </div>
@@ -49,7 +50,7 @@
               {{ book?.authors[0]?.name }}
             </div>
             <span>
-              <a href="#!">
+              <a href="#!" @click="$emit('removeBook', book.id)">
                 icon
                 <i class="bi bi-trash"></i>
               </a>
@@ -84,6 +85,12 @@
                 );
               }
             });
+        },
+        methods : {
+          removeBook(id) {
+            console.log("removeBook", id);
+            this.books.results = this.books.results.filter((item) => item.id !== id);
+          }
         },
         components: {
           "book-item": BookItem,
