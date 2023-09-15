@@ -4,14 +4,16 @@
       <div class="col">
         <h1 class="mt-5">Login</h1>
         <hr />
-        <form-tag>
+        <form-tag @myevent="submitHandler" name="myFOrm" event="myevent">
           <text-input
+            v-model="email"
             label="Email"
             type="email"
             name="email"
             required="true"
           ></text-input>
           <text-input
+            v-model="password"
             label="Password"
             type="password"
             name="password"
@@ -35,6 +37,17 @@ export default {
   components: {
     FormTag,
     TextInput,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    submitHandler() {
+      console.log("submitHandler");
+    },
   },
 };
 </script>
