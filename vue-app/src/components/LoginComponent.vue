@@ -46,7 +46,29 @@ export default {
   },
   methods: {
     submitHandler() {
-      console.log("submitHandler");
+      const payload = {
+        email: this.email,
+        password: this.password,
+      };
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      };
+
+      fetch("http://localhost:3000/api/login", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            console.log("error", data.message);
+          } else {
+            console.log("data", data);
+          }
+        })
+        .catch((error) => {
+          console.log("catched error", error);
+        });
     },
   },
 };
