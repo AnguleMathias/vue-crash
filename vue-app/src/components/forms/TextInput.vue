@@ -2,15 +2,15 @@
   <div class="mb-3">
     <label :for="name" class="form-label">{{ label }}</label>
     <input
-      :name="name"
       :type="type"
-      :class="['form-control']"
+      :name="name"
       :placeholder="placeholder"
       :required="required"
       :min="min"
       :max="max"
       :value="value"
       :autocomplete="name + '-new'"
+      class="form-control"
     />
   </div>
 </template>

@@ -4,7 +4,7 @@
       <div class="col">
         <h1 class="mt-5">Login</h1>
         <hr />
-        <form-tag @myevent="submitHandler" name="myFOrm" event="myevent">
+        <form-tag @myevent="submitHandler" name="myform" event="myevent">
           <text-input
             v-model="email"
             label="Email"
@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import TextInput from "./forms/TextInput.vue";
 import FormTag from "./forms/FormTag.vue";
+import TextInput from "./forms/TextInput.vue";
 
 export default {
   name: "loginComponent",
@@ -40,12 +40,14 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     };
   },
   methods: {
     submitHandler() {
+      console.log("Email", this.email, "Password", this.password);
+
       const payload = {
         email: this.email,
         password: this.password,
@@ -57,7 +59,7 @@ export default {
         body: JSON.stringify(payload),
       };
 
-      fetch("http://localhost:3000/api/login", requestOptions)
+      fetch("http://localhost:8081/users/login", requestOptions)
         .then((response) => response.json())
         .then((data) => {
           if (data.error) {
